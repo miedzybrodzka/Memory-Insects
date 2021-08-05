@@ -141,13 +141,13 @@ footer {
   }
   100% {
     visibility: visible;
-    height: 1000px;
+    height: 1100px;
   }
   
 }
 
 .result {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
   color: rgb(2, 255, 242);
   border: 2px solid rgb(2, 255, 242);
@@ -157,7 +157,7 @@ footer {
     width: 80%;
     padding: 10px;
     text-align: center;
-    margin: 0px auto 60px auto;
+    margin: 0px auto 40px auto;
 }
 
 .gameboard {
@@ -237,6 +237,11 @@ footer {
     animation: start-game 0.9s linear 0.4s 1 normal forwards;
      
    }
+
+   .result {
+    margin: 0px auto 40px auto;
+  }
+
    
    @keyframes start-game {
      0% {
@@ -253,7 +258,6 @@ footer {
 
   .result {
     margin-bottom: 70px;
-    font-size: 24px;
   }
 
   .gameboard {
