@@ -1,35 +1,10 @@
 import React, {Component} from 'react';
 import {ActionButton} from './ActionButton';
-import {connect} from 'react-redux';
 import {RANDOM, WIN, VISIBLE, UNCLICKABLE} from '../store/dataType';
-import {setRandomArray, showHiddenCard, stopClick, blockAllCards, setWinCards, unblockCards, coverCards, clearTable, cleanTable} from '../store';
-
-const mapStateToProps = (storeData) => ({
-    cards: storeData.cards,
-    randomCardsArray: storeData.random,
-    isVisibleCard: storeData.visible,
-    unClickableArray: storeData.unclickable,
-    winCards: storeData.win
-})
-
-const mapDispatchToProps = {
-    setRandomArray: setRandomArray,
-    showHiddenCard: showHiddenCard,
-    stopClick: stopClick,
-    blockAllCards: blockAllCards,
-    setWinCards: setWinCards,
-    unblockCards: unblockCards,
-    coverCards: coverCards,
-    clearTable: clearTable,
-    cleanTable: cleanTable
-
-}
-
-const connectFunction = connect(mapStateToProps, mapDispatchToProps);
+import {drawFunction} from './drawFunction';
 
 
-export const Gameboard = connectFunction(
-    class extends Component {
+export class Gameboard  extends Component {
 
         constructor(props) {
             super(props);
@@ -84,15 +59,7 @@ export const Gameboard = connectFunction(
             this.props.unClickableArray.forEach(elem => this.props.cleanTable(elem.id, UNCLICKABLE, 'disable'));
             
             setTimeout(()=>{ 
-                const helpArray = [];
-                while(helpArray.length < 24) {
-                const randomNumber = Math.floor(Math.random() * 24);
-                    if (!helpArray.includes(randomNumber)) {
-                        helpArray.push(randomNumber);
-                        this.props.setRandomArray(this.props.cards[randomNumber]);        
-                    }
-                } 
-                helpArray.length = 0;
+                drawFunction(this.props.setRandomArray, this.props.cards);
                 },0) 
         }
 
@@ -132,4 +99,3 @@ export const Gameboard = connectFunction(
             )
         }
     }
-)

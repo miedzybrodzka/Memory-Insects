@@ -5,6 +5,10 @@ import {Gameboard} from './components/Gameboard';
 import {Footer} from './components/Footer';
 import {Provider} from 'react-redux';
 import dataStore from './store';
+import {Connector} from './store/Connector';
+
+const ConnectedStart = Connector(Start);
+const ConnectedGameboard = Connector(Gameboard);
 
 export default class App extends Component {
   constructor(props) {
@@ -15,6 +19,8 @@ export default class App extends Component {
     }
   }
 
+
+
 showGameboard = () => {
         this.setState({hideStartBoard: 'hide', showGameboard: 'show'});
 }
@@ -24,8 +30,8 @@ showGameboard = () => {
       <Provider store = {dataStore}>
         <div className = 'game'>
           <div className = 'leaves'>
-            <Start showGameboard = {this.showGameboard} className = {this.state.hideStartBoard}/>
-            <Gameboard className = {this.state.showGameboard}/>
+            <ConnectedStart showGameboard = {this.showGameboard} className = {this.state.hideStartBoard}/>
+            <ConnectedGameboard className = {this.state.showGameboard}/>
           </div>
           <Footer />
         </div>
